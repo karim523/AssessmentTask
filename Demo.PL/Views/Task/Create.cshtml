@@ -1,19 +1,41 @@
-﻿@model EmployeeTask
+﻿@model Demo.BLL.Dtos.Tasks.CreateTaskDto
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="Title"></label>
+@{
+    ViewData["Title"] = "Create Task";
+}
+
+<h2 class="my-4 text-center">Create New Task</h2>
+
+<form asp-action="Create" method="post" class="col-md-8 mx-auto">
+    <div class="form-group mb-3">
+        <label asp-for="Title" class="form-label"></label>
         <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="DueDate"></label>
+
+
+    <div class="form-group mb-3">
+        <label asp-for="DueDate" class="form-label"></label>
         <input asp-for="DueDate" type="date" class="form-control" />
+        <span asp-validation-for="DueDate" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="EmployeeId">Assign To</label>
+
+    <div class="form-group mb-3">
+        <label asp-for="EmployeeId" class="form-label">Assign To Employee</label>
         <select asp-for="EmployeeId" asp-items="ViewBag.Employees" class="form-control">
-            <option value="">Select Employee</option>
+            <option value="">-- Select Employee --</option>
         </select>
+        <span asp-validation-for="EmployeeId" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary mt-3">Create</button>
+
+    <div class="mt-4 d-flex gap-3">
+        <button type="submit" class="btn btn-primary px-4">Create</button>
+        <a asp-action="Index" class="btn btn-outline-dark">Back To Tasks</a>
+    </div>
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -6,7 +6,7 @@ namespace Demo.BLL.Dtos.Employees
     {
         public int Id { get; set; }
 
-        public string FullName { get; set; } = null!;
+        public string FullName { get; set; } 
 
         [DataType(DataType.Currency)]
         public decimal Salary { get; set; }

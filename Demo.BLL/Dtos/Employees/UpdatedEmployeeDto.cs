@@ -9,11 +9,11 @@ namespace Demo.BLL.Dtos.Employees
 
         [Required]
         [MaxLength(50)]
-        public string FirstName { get; set; } = null!;
+        public string FirstName { get; set; } 
 
         [Required]
         [MaxLength(50)]
-        public string LastName { get; set; } = null!;
+        public string LastName { get; set; } 
 
         [DataType(DataType.Currency)]
         public decimal Salary { get; set; }

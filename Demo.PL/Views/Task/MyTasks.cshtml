@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<Demo.BLL.Dtos.Tasks.TaskDto>
+
 @{
-    ViewData["Title"] = "Manager Tasks";
+    ViewData["Title"] = "My Tasks";
 }
 
-<h2 class="mb-4">Manager Tasks</h2>
-
-<a asp-action="Create" class="btn btn-success mb-3">+ Create Task</a>
+<h2 class="mb-4">My Tasks</h2>
 
 @if (!Model.Any())
 {
-    <div class="alert alert-info">No tasks found.</div>
+    <div class="alert alert-info">You have no tasks assigned.</div>
 }
 else
 {
@@ -20,7 +19,7 @@ else
                 <th>Description</th>
                 <th>Due Date</th>
                 <th>Status</th>
-                <th>Employee</th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +29,11 @@ else
                     <td>@task.Title</td>
                     <td>@task.DueDate?.ToShortDateString()</td>
                     <td>@task.Status</td>
-                    <td>@task.EmployeeName</td>
+                    <td>
+                        <a asp-action="EditStatus" asp-route-id="@task.Id" class="btn btn-sm btn-outline-primary">
+                            Edit Status
+                        </a>
+                    </td>
                 </tr>
             }
         </tbody>
