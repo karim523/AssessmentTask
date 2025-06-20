@@ -1,0 +1,48 @@
+﻿@model EmployeeDetailsDto
+@{
+    ViewData["Title"] = "Details";
+}
+<h1 class="my-5 w-75 m-auto text-center">Employee Details</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center mb-4">
+            <img src="~/files/images/@(Model.Image ?? "NotFound.png")"
+                 class="img-fluid rounded-circle border border-3"
+                 style="width: 200px; height: 200px; object-fit: cover;"
+                 alt="@Model.FullName" />
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <label class="form-label">Full Name</label>
+                    <input value="@Model.FullName" class="form-control" readonly />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Manager</label>
+                    <input value="@(Model.ManagerName ?? "No Manager")" class="form-control" readonly />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Salary</label>
+                    <input value="@Model.Salary" class="form-control" readonly />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Department</label>
+                    <input value="@Model.Department" class="form-control" readonly />
+                </div>           
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-center gap-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success px-4">Edit</a>
+        <a asp-action="Index" class="btn btn-outline-dark px-4">Back To List</a>
+    </div>
+</div>

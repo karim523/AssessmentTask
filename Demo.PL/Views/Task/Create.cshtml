@@ -1,0 +1,19 @@
+﻿@model EmployeeTask
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DueDate"></label>
+        <input asp-for="DueDate" type="date" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EmployeeId">Assign To</label>
+        <select asp-for="EmployeeId" asp-items="ViewBag.Employees" class="form-control">
+            <option value="">Select Employee</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Create</button>
+</form>

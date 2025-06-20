@@ -1,0 +1,60 @@
+﻿@model EmployeeViewModels
+@inject IDepartmentService departmentService
+@{
+    var departments = new SelectList(await departmentService.GetAllDepartmentsAsync(), nameof(DepartmentToReturnDto.Id), nameof(DepartmentToReturnDto.Name));
+}
+
+<form method="post" asp-controller="Employee" asp-action="@ViewBag.Action" class="col-8" enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+
+    <div class="row g-3">
+        <div class="form-group col-md-6">
+            <label class="form-label" asp-for="FirstName"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="form-label" asp-for="LastName"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="form-label" asp-for="ManagerId">Manager</label>
+            <input asp-for="ManagerId" class="form-control" />
+            <span asp-validation-for="ManagerId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="form-label" asp-for="Salary">Salary</label>
+            <input asp-for="Salary" class="form-control" />
+            <span asp-validation-for="Salary" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="form-label" asp-for="DepartmentId">DepartmentId</label>
+            <select asp-for="DepartmentId" asp-items="departments" class="form-control">
+                <option value="">Select Department</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="form-label" asp-for="Image"></label>
+            <input asp-for="Image" class="form-control" />
+        </div>
+    </div>
+
+    @if (ViewData["Title"] as string == "Create")
+    {
+        <div class="form-group mt-3">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            <a asp-controller="Employee" asp-action="Index" class="btn btn-outline-dark">Back To List</a>
+        </div>
+    }
+    else
+    {
+        <div class="form-group mt-3">
+            <input type="submit" value="Save" class="btn btn-success" />
+            <a asp-controller="Employee" asp-action="Index" class="btn btn-outline-dark">Back To List</a>
+        </div>
+    }
+</form>
